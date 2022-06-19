@@ -12,3 +12,4 @@ __pycache__/
 
 # test artifacts
 .mypy_cache/
+.pytest_cache/
