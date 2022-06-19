@@ -9,3 +9,6 @@ dist/
 .eggs/
 *.pyc
 __pycache__/
+
+# test artifacts
+.mypy_cache/

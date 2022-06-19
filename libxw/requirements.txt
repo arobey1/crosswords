@@ -1,3 +1,5 @@
 # https://pip.pypa.io/en/stable/user_guide/#requirements-files
 
+mypy==0.961     # https://mypy-lang.blogspot.com/
+
 --editable libxw[dev]
