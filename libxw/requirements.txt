@@ -1,5 +1,6 @@
 # https://pip.pypa.io/en/stable/user_guide/#requirements-files
 
+flake8==4.0.1   # https://flake8.pycqa.org/en/latest/release-notes/index.html
 mypy==0.961     # https://mypy-lang.blogspot.com/
 
 --editable libxw[dev]
