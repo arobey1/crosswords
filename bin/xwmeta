@@ -1,0 +1,48 @@
+#!/bin/bash
+
+set -euo pipefail
+
+usage() {
+    cat <<EOF >&2
+usage: $0 [lint|test]
+EOF
+}
+
+if [[ $# -eq 0 ]]; then
+    usage
+    exit 1
+fi
+
+ACTION="$1"
+shift
+
+cd "$(git rev-parse --show-toplevel)"
+
+for project in libxw; do
+    pushd "$project/"
+        case "$ACTION" in
+            -h|--help)
+                usage
+                exit 0
+                ;;
+
+            lint)
+                set -x
+                mypy src/ tests/
+                flake8 src/ tests/
+                set +x
+                ;;
+
+            test)
+                set -x
+                pytest
+                set +x
+                ;;
+
+            *)
+                usage
+                exit 1
+                ;;
+        esac
+    popd
+done

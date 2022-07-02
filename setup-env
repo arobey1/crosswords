@@ -1,0 +1,40 @@
+# This script sets up an environment suitable for development.
+#
+# Usage:
+#
+#   $ source setup-env
+#
+
+_xw_die() {
+    echo "Failed to set up environment!" >&2
+    return
+}
+
+_XW_REPO_ROOT="$(git rev-parse --show-toplevel)"
+_XW_VENV_ROOT="$_XW_REPO_ROOT/venv/crosswords"
+_XW_PYTHON=python3.10
+
+# Create a virtual environment if we don't already have one ...
+if [[ ! -e "$_XW_VENV_ROOT/bin/activate" ]]; then
+    echo "Creating a virtual environment at '$_XW_VENV_ROOT'" >&2
+    rm -rf "$_XW_VENV_ROOT" || _xw_die
+    "$_XW_PYTHON" -m venv "$_XW_VENV_ROOT" || _xw_die
+fi
+
+# ... activate it ...
+source "$_XW_VENV_ROOT/bin/activate" || _xw_die
+
+# ... make sure we have a recent version of some core tools ...
+pip install --upgrade \
+    pip \
+    setuptools \
+    wheel \
+    || _xw_die
+
+# ... and install our own package.
+pip install -r libxw/requirements.txt || _xw_die
+
+# Prepend any additional scripts so that they're available in the shell.
+export PATH="$_XW_REPO_ROOT/bin:$PATH"
+
+# vim: syntax=sh
