@@ -32,6 +32,13 @@ class ClueDirection(Enum):
     ACROSS = auto()
     DOWN = auto()
 
+    def other(self) -> "ClueDirection":
+        match self:
+            case ClueDirection.ACROSS:
+                return ClueDirection.DOWN
+            case ClueDirection.DOWN:
+                return ClueDirection.ACROSS
+
 
 @dataclass
 class Clue:
