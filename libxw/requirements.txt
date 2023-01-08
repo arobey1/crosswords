@@ -4,5 +4,6 @@ black==22.3.0   # https://black.readthedocs.io/en/stable/change_log.html
 flake8==4.0.1   # https://flake8.pycqa.org/en/latest/release-notes/index.html
 mypy==0.961     # https://mypy-lang.blogspot.com/
 pytest==7.1.2   # https://docs.pytest.org/en/7.0.x/changelog.html
+tox==3.25.0     # https://tox.readthedocs.io/en/latest/changelog.html
 
 --editable libxw[dev]
